@@ -36,10 +36,10 @@ public class TreeBuilder<T extends Node> {
     }
 
     private void insertNode(T node) {
-        if (nodeMap.containsKey(node.getParentNo())) {
-            nodeMap.get(node.getParentNo()).addChild(node);
-        } else {
+        if (node.getDepth() == 1) {
             root.addChild(node);
+        } else if (nodeMap.containsKey(node.getParentNo())) {
+            nodeMap.get(node.getParentNo()).addChild(node);
         }
     }
 }
