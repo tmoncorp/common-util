@@ -6,7 +6,7 @@
 
     <groupId>com.github.tmoncorp</groupId>
     <artifactId>common-util</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <packaging>jar</packaging>
 
     <name>Common Util</name>
@@ -120,12 +120,12 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency> 
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>4.1.6.RELEASE</version>
         </dependency>
-        <dependency> 
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>21.0</version>
