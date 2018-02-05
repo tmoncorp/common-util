@@ -1,16 +1,16 @@
 package com.tmoncorp.common.util.version;
 
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Version implements Serializable, Comparable<Version> {
     private static final long serialVersionUID = 12321657321387L;
 
-    private String version;
-    private List<Integer> numbers = new ArrayList<>();
+    private final String version;
+    private List<Integer> numbers;
     private boolean valid = true;
 
     public Version(String version) {
@@ -21,15 +21,17 @@ public class Version implements Serializable, Comparable<Version> {
             return;
         }
 
+        ImmutableList.Builder<Integer> builder = ImmutableList.builder();
         String[] numberStrings = StringUtils.split(version, '.');
         for (String numberString : numberStrings) {
             try {
-                this.numbers.add(Integer.parseInt(numberString));
+                builder.add(Integer.parseInt(numberString));
             } catch (NumberFormatException e) {
                 this.valid = false;
                 break;
             }
         }
+        this.numbers = builder.build();
     }
 
     public boolean isLaterThan(Version o) {

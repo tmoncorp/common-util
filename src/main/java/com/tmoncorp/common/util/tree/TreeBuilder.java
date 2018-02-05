@@ -2,10 +2,10 @@ package com.tmoncorp.common.util.tree;
 
 import java.util.*;
 
-public class TreeBuilder<T extends Node> {
-    private TreeSet<T> nodes = new TreeSet<>();
-    private HashMap<Long, T> nodeMap = new HashMap<>();
-    private Root<T> root = new Root<>();
+public class TreeBuilder<T extends Node<T>> {
+    private final TreeSet<T> nodes = new TreeSet<>();
+    private final HashMap<Long, T> nodeMap = new HashMap<>();
+    private final Root<T> root = new Root<>();
     private boolean isComplete = false;
 
     public TreeBuilder() {
