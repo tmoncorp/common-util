@@ -10,13 +10,22 @@ public interface DateTimeChecker {
 
     @JsonIgnore
     default boolean isFinished() {
-        return isWrongTime() == false && getEndDate().isBefore(LocalDateTime.now());
+        return isFinished(LocalDateTime.now());
+    }
+
+    @JsonIgnore
+    default boolean isFinished(LocalDateTime currentTime) {
+        return isWrongTime() == false && getEndDate().isBefore(currentTime);
     }
 
     @JsonIgnore
     default boolean isAvailable() {
-        LocalDateTime now = LocalDateTime.now();
-        return isWrongTime() == false && getStartDate().isBefore(now) && getEndDate().isAfter(now);
+        return isAvailable(LocalDateTime.now());
+    }
+
+    @JsonIgnore
+    default boolean isAvailable(LocalDateTime currentTime) {
+        return isWrongTime() == false && getStartDate().isBefore(currentTime) && getEndDate().isAfter(currentTime);
     }
 
     @JsonIgnore
