@@ -43,7 +43,7 @@ public abstract class CommonRestController<K, V extends CommonRestModel> {
 
     /**
      * @param objects 수정 할 resource 의 id, resource 맵
-     * @return 업데이트된 resource 목록
+     * @return 업데이트에 실패한 resource 목록
      */
     @RequestMapping(method = RequestMethod.PUT)
     public List<V> updateAll(@RequestBody List<V> objects) {

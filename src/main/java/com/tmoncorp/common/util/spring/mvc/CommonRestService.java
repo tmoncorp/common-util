@@ -23,11 +23,11 @@ public class CommonRestService<K, V extends CommonRestModel> {
     }
 
     public List<V> addAll(List<V> objects) {
-        return objects.stream().filter(object -> add(object) != null).collect(Collectors.toList());
+        return objects.stream().map(this::add).collect(Collectors.toList());
     }
 
     public List<V> updateAll(List<V> objects) {
-        return objects.stream().filter(object -> update((K) object.getId(), object)).collect(Collectors.toList());
+        return objects.stream().filter(object -> update((K) object.getId(), object) == false).collect(Collectors.toList());
     }
 
     public List<K> deleteAll(List<K> id) {
@@ -38,9 +38,9 @@ public class CommonRestService<K, V extends CommonRestModel> {
         return repository.select(id);
     }
 
-    public K add(V object) {
-        if (update((K) object.getId(), object)) {
-            return (K) object.getId();
+    public V add(V object) {
+        if (object.getId() != null && update((K) object.getId(), object)) {
+            return object;
         }
 
         return repository.insert(object);

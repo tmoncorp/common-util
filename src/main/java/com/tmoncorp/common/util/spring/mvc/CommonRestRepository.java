@@ -23,9 +23,9 @@ public interface CommonRestRepository<K, V extends CommonRestModel> {
 
     /**
      * @param object 추가 할 resource
-     * @return 추가된 resource 의 PK
+     * @return PK 가 추가된 resource
      */
-    default K insert(V object) {
+    default V insert(V object) {
         throw new UnsupportedOperationException("insert is not supported");
     }
 
